@@ -1,23 +1,16 @@
 import React, { Suspense, useState, useEffect } from 'react';
 import { Canvas } from '@react-three/fiber';
 import CameraController from './CameraController';
-import MonolithEnvironment from './MonolithEnvironment';
-import EnergyPortal from './EnergyPortal';
+import CyberDaisGround from './CyberDaisGround';
+import CyberBust3D from './CyberBust3D';
+import CosmicRing3D from './CosmicRing3D';
+import CelestialPlanet3D from './CelestialPlanet3D';
+import HoloHudPanels3D from './HoloHudPanels3D';
+import FloatingAsteroids3D from './FloatingAsteroids3D';
 import HumanSilhouette from './HumanSilhouette';
 import IntelligenceCore3D from './IntelligenceCore3D';
 import InfiniteCorridor3D from './InfiniteCorridor3D';
 import CosmicParticles from './CosmicParticles';
-
-function CanvasFallback() {
-  return (
-    <div className="absolute inset-0 flex items-center justify-center bg-[#030712] text-cyan-400 font-mono text-sm">
-      <div className="text-center p-6 border border-cyan-500/30 rounded-lg bg-black/80 max-w-md">
-        <p className="text-lg font-bold text-white mb-2">INITIALIZING 3D SYNTHESIS</p>
-        <p className="text-slate-400 text-xs">Calibrating WebGL graphics pipeline...</p>
-      </div>
-    </div>
-  );
-}
 
 export default function SceneContainer({
   activeIndex = 0,
@@ -48,7 +41,7 @@ export default function SceneContainer({
   return (
     <div className="fixed inset-0 z-0 pointer-events-none">
       <Canvas
-        camera={{ position: [0, 1.6, 11], fov: 48, near: 0.1, far: 240 }}
+        camera={{ position: [0, 1.4, 11], fov: 46, near: 0.1, far: 240 }}
         dpr={isLowPerf ? 1 : [1, 1.8]}
         gl={{
           antialias: true,
@@ -59,23 +52,23 @@ export default function SceneContainer({
       >
         <Suspense fallback={null}>
           {/* Deep Cinematic Environmental Fog */}
-          <color attach="background" args={['#030712']} />
-          <fog attach="fog" args={['#030712', 15, 140]} />
+          <color attach="background" args={['#020612']} />
+          <fog attach="fog" args={['#020612', 18, 150]} />
 
           {/* Balanced Cinematic Lighting */}
-          <ambientLight color="#0c1a30" intensity={1.2} />
+          <ambientLight color="#081426" intensity={1.5} />
           
-          {/* Key Directional Rim Light for Monoliths */}
+          {/* Key Directional Rim Light for Cybernetic Figure */}
           <directionalLight
-            position={[15, 25, 10]}
+            position={[12, 18, 8]}
             color="#38bdf8"
-            intensity={2.2}
+            intensity={2.8}
           />
-          {/* Violet Counter-Fill */}
+          {/* Electric Violet Counter-Fill */}
           <directionalLight
-            position={[-15, 15, -10]}
-            color="#7c3aed"
-            intensity={1.0}
+            position={[-14, 12, -6]}
+            color="#a855f7"
+            intensity={1.8}
           />
 
           {/* Camera Motion & Choreography */}
@@ -85,16 +78,31 @@ export default function SceneContainer({
             freeOrbit={freeOrbit}
           />
 
-          {/* 3D Scene Components */}
-          <MonolithEnvironment />
-          <EnergyPortal position={[0, 4.5, -22]} />
-          <HumanSilhouette position={[0, -1.8, -4]} />
+          {/* 1. Ground & Concentric Cybernetic Dais with Explorer Silhouette */}
+          <CyberDaisGround position={[0, -2, 0]} />
+          <HumanSilhouette position={[0, -1.75, -4.5]} />
+
+          {/* 2. Central Colossal Cybernetic Bust with Glowing VR Visor & Accretion Rings */}
+          <CyberBust3D position={[5, 2.5, -18]} scale={[1.2, 1.2, 1.2]} />
+          <CosmicRing3D position={[5, 2.5, -18]} count={isLowPerf ? 220 : 480} />
+
+          {/* 3. Celestial Planet / Moon & Megastructure in Cosmic Background */}
+          <CelestialPlanet3D />
+
+          {/* 4. Floating 3D Holographic HUD Artifacts */}
+          <HoloHudPanels3D />
+
+          {/* 5. Zero-Gravity Tumbling Obsidian Asteroids */}
+          <FloatingAsteroids3D />
+
+          {/* 6. Deep Journey Chamber Elements (Sections B & D) */}
           <IntelligenceCore3D position={[0, 2.2, -45]} />
           <InfiniteCorridor3D startZ={-70} count={9} spacing={8} />
+
+          {/* 7. Fine Cosmic Starfield & Drifting Dust Motes */}
           <CosmicParticles count={isLowPerf ? 350 : 850} />
         </Suspense>
       </Canvas>
     </div>
   );
 }
-

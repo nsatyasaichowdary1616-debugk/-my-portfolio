@@ -1,109 +1,149 @@
 import React from 'react';
-import { ArrowDown, FileText, Compass, ChevronRight, Activity } from 'lucide-react';
-import { personalInfo } from '../data/portfolioData';
+import { ArrowRight, Download, Mouse, Github, Linkedin, ExternalLink, Mail, BarChart3, LayoutDashboard, Trophy, Zap } from 'lucide-react';
+import { personalInfo, heroQuickStats } from '../data/portfolioData';
+
+// Map icon strings to components
+const statIcons = {
+  BarChart3: BarChart3,
+  LayoutDashboard: LayoutDashboard,
+  Trophy: Trophy,
+  Zap: Zap
+};
 
 export default function HeroOverlay({ onExplore = () => {}, onOpenResume = () => {} }) {
   return (
-    <div className="relative min-h-screen w-full flex flex-col justify-between pt-24 sm:pt-28 pb-10 sm:pb-12 px-6 sm:px-12 pointer-events-none select-none">
+    <div className="relative min-h-screen w-full flex flex-col justify-between pt-28 sm:pt-32 pb-8 sm:pb-10 px-6 sm:px-12 pointer-events-none select-none">
       
-      {/* Top Center Spatial Compass Indicator */}
-      <div className="flex justify-center items-center pointer-events-auto">
-        <div className="inline-flex items-center space-x-2 px-3.5 py-1 rounded-full glass-panel border border-cyan-500/20 text-[11px] font-mono text-cyan-300">
-          <Activity size={12} className="text-cyan-400 animate-pulse" />
-          <span className="tracking-widest">DATA ARCHITECTURE & SYNTHESIS</span>
-        </div>
-      </div>
-
-      {/* Main Composition: Bottom Split View */}
-      <div className="w-full max-w-7xl mx-auto grid grid-cols-1 lg:grid-cols-12 gap-8 items-end">
-        
-        {/* Lower-Left Region: Bold Editorial Typography & CTAs */}
-        <div className="lg:col-span-7 flex flex-col items-start pointer-events-auto space-y-4">
+      {/* Main Hero Content (Aligned to Left half as in the image) */}
+      <div className="w-full max-w-7xl mx-auto flex-1 flex flex-col justify-center">
+        <div className="max-w-2xl space-y-5 pointer-events-auto">
           
-          <div className="inline-flex items-center space-x-2 text-xs font-mono text-cyan-400 tracking-[0.2em] uppercase">
-            <span className="w-1.5 h-1.5 bg-cyan-400 rounded-full" />
-            <span>NUNE SATYA SAI KUMAR</span>
+          {/* Top Pill Badge: • Data • AI • Innovation */}
+          <div className="inline-flex items-center space-x-2 px-3.5 py-1.5 rounded-full bg-slate-900/80 backdrop-blur-xl border border-cyan-500/30 text-xs font-sans text-slate-200 shadow-[0_0_15px_rgba(0,212,255,0.25)]">
+            <span className="w-2 h-2 rounded-full bg-cyan-400 shadow-[0_0_8px_rgba(0,212,255,1)] animate-pulse" />
+            <span className="tracking-wide font-medium">Data • AI • Innovation</span>
           </div>
 
-          <h1 className="text-4xl sm:text-6xl md:text-7xl font-display font-bold text-white tracking-tight leading-[1.05]">
-            Turning Data <br />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-cyan-400 via-sky-300 to-indigo-400 neon-glow-cyan">
-              Into Intelligence.
-            </span>
+          {/* Primary Name Headline */}
+          <h1 className="text-4xl sm:text-6xl md:text-7xl font-sans font-extrabold text-white tracking-tight leading-[1.08]">
+            Nune Satya Sai <span className="text-transparent bg-clip-text bg-gradient-to-r from-white via-cyan-200 to-purple-400">Kumar</span>
           </h1>
 
-          <p className="text-lg sm:text-xl font-medium text-slate-300 tracking-wide font-sans max-w-xl">
-            {personalInfo.subheadline}
+          {/* Subheadline with violet 'Impact.' */}
+          <p className="text-2xl sm:text-4xl font-sans font-bold text-slate-200 leading-snug">
+            Turning Data into Insights, <br />
+            and Ideas into <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 via-pink-400 to-indigo-400 shadow-purple-500/50">Impact.</span>
           </p>
 
-          {/* Action Buttons */}
-          <div className="flex flex-wrap items-center gap-3 pt-2">
+          {/* Concise Professional Description */}
+          <p className="text-slate-300 font-sans text-sm sm:text-base leading-relaxed max-w-xl">
+            {personalInfo.heroDescription}
+          </p>
+
+          {/* Action Buttons: View My Projects → & Download Resume */}
+          <div className="flex flex-wrap items-center gap-4 pt-3">
+            {/* Primary Gradient Pill Button */}
             <button
               onClick={onExplore}
-              className="inline-flex items-center space-x-2.5 px-6 py-3 rounded-full bg-cyan-400 text-slate-950 font-mono font-bold text-xs tracking-widest hover:bg-white hover:shadow-[0_0_30px_rgba(0,240,255,0.8)] transition-all duration-300 group cursor-pointer focus:outline-none"
+              className="inline-flex items-center space-x-2.5 px-7 py-3.5 rounded-full bg-gradient-to-r from-blue-600 via-cyan-500 to-purple-600 text-white font-sans font-bold text-sm tracking-wide hover:shadow-[0_0_30px_rgba(0,212,255,0.7)] hover:scale-105 transition-all duration-300 group cursor-pointer focus:outline-none"
             >
-              <span>EXPLORE MY WORK</span>
-              <Compass size={14} className="group-hover:rotate-45 transition-transform duration-300" />
+              <span>View My Projects</span>
+              <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </button>
 
+            {/* Secondary Glass Pill Button */}
             <button
               onClick={onOpenResume}
-              className="inline-flex items-center space-x-2.5 px-6 py-3 rounded-full glass-panel border border-slate-700 hover:border-cyan-400 text-slate-200 hover:text-cyan-300 font-mono text-xs tracking-widest transition-all duration-300 group cursor-pointer focus:outline-none shadow-lg"
+              className="inline-flex items-center space-x-2 px-6 py-3.5 rounded-full bg-slate-950/70 hover:bg-slate-900 backdrop-blur-xl border border-white/20 hover:border-cyan-400/60 text-slate-200 hover:text-white font-sans font-semibold text-sm tracking-wide transition-all duration-300 group cursor-pointer focus:outline-none shadow-lg"
             >
-              <FileText size={14} className="text-cyan-400 group-hover:scale-110 transition-transform" />
-              <span>VIEW RESUME</span>
+              <span>Download Resume</span>
+              <Download size={15} className="text-cyan-400 group-hover:translate-y-0.5 transition-transform" />
             </button>
           </div>
-        </div>
 
-        {/* Lower-Right Region: Elegant Concise Description */}
-        <div className="lg:col-span-5 flex flex-col items-start lg:items-end text-left lg:text-right pointer-events-auto space-y-4">
-          <div className="glass-panel p-5 sm:p-6 rounded-2xl border border-slate-700/60 max-w-md shadow-2xl backdrop-blur-xl">
-            <div className="text-[10px] font-mono tracking-widest text-cyan-400 uppercase mb-2">
-              EXECUTIVE STATEMENT
-            </div>
-            <p className="text-slate-300 text-sm sm:text-base leading-relaxed font-sans">
-              “{personalInfo.heroDescription}”
-            </p>
-            <div className="mt-4 pt-3 border-t border-slate-800 flex items-center justify-between text-[11px] font-mono text-slate-400">
-              <span>LOCATION: HYDERABAD, IN</span>
-              <span className="text-cyan-400 font-semibold">1 YR EXP • PRODUCTION</span>
+          {/* Bottom-Left Glass Stats HUD Strip (Exact Match from Image) */}
+          <div className="pt-6">
+            <div className="inline-flex flex-wrap sm:flex-nowrap items-center divide-y sm:divide-y-0 sm:divide-x divide-white/10 rounded-2xl bg-slate-950/75 backdrop-blur-2xl border border-white/10 shadow-[0_8px_32px_rgba(0,0,0,0.8)] p-3 sm:p-4 gap-3 sm:gap-5">
+              {heroQuickStats.map((stat, idx) => {
+                const IconComp = statIcons[stat.icon] || BarChart3;
+                return (
+                  <div key={idx} className="flex items-center space-x-3 px-2 sm:px-3">
+                    <div className="w-9 h-9 rounded-xl bg-gradient-to-br from-cyan-950/80 to-purple-950/80 border border-cyan-500/30 flex items-center justify-center text-cyan-400">
+                      <IconComp size={18} />
+                    </div>
+                    <div>
+                      <div className="text-lg font-bold font-sans text-white leading-tight">
+                        {stat.value}
+                      </div>
+                      <div className="text-[11px] font-sans text-slate-400 whitespace-nowrap">
+                        {stat.label}
+                      </div>
+                    </div>
+                  </div>
+                );
+              })}
             </div>
           </div>
+
         </div>
       </div>
 
-      {/* Bottom Edge: Verified Technology Badges & Minimal Scroll Indicator */}
-      <div className="w-full max-w-7xl mx-auto pt-6 border-t border-slate-800/60 flex flex-col sm:flex-row justify-between items-center gap-4 pointer-events-auto">
+      {/* Bottom Bar: Scroll Indicator on Left & Social Glass Dock on Right */}
+      <div className="w-full max-w-7xl mx-auto flex items-center justify-between pt-4 pointer-events-auto">
         
-        {/* Verified Metadata Labels */}
-        <div className="flex flex-wrap items-center gap-2 text-[10px] font-mono text-slate-400">
-          <span className="px-2.5 py-1 rounded bg-slate-900/80 border border-cyan-500/30 text-cyan-300">
-            [SQL SPEEDUP -82%]
-          </span>
-          <span className="px-2.5 py-1 rounded bg-slate-900/80 border border-slate-700 text-slate-300">
-            [1.4M+ MONTHLY ETL]
-          </span>
-          <span className="px-2.5 py-1 rounded bg-slate-900/80 border border-indigo-500/30 text-indigo-300">
-            [AUTOGEN MULTI-AGENT]
-          </span>
-          <span className="px-2.5 py-1 rounded bg-slate-900/80 border border-sky-500/30 text-sky-300">
-            [RAG 15K+ DOCS]
-          </span>
-          <span className="px-2.5 py-1 rounded bg-slate-900/80 border border-amber-500/30 text-amber-300">
-            [POWER BI / DAX]
-          </span>
-        </div>
-
-        {/* Minimal Animated Scroll Indicator */}
-        <div className="flex items-center space-x-2 text-xs font-mono text-slate-400 tracking-widest">
-          <span className="text-[11px]">SCROLL TO ENTER PORTAL</span>
-          <div className="w-6 h-10 rounded-full border border-slate-700 flex justify-center pt-1.5">
+        {/* Scroll Indicator Left */}
+        <div className="flex items-center space-x-2.5 text-xs font-sans text-slate-400">
+          <div className="w-5 h-8 rounded-full border border-slate-600 flex justify-center pt-1.5">
             <span className="w-1 h-2 bg-cyan-400 rounded-full animate-bounce" />
           </div>
+          <span className="tracking-wide">Scroll to explore</span>
         </div>
+
+        {/* Social Icons Dock Right (Exact 4 icons from reference image) */}
+        <div className="flex items-center space-x-2.5">
+          {/* GitHub */}
+          <a
+            href={personalInfo.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-9 h-9 rounded-full bg-slate-900/80 backdrop-blur-xl border border-white/15 hover:border-cyan-400 flex items-center justify-center text-slate-300 hover:text-cyan-300 shadow-[0_0_12px_rgba(0,0,0,0.6)] hover:shadow-[0_0_16px_rgba(0,212,255,0.4)] transition-all duration-300"
+            title="GitHub"
+          >
+            <Github size={16} />
+          </a>
+
+          {/* LinkedIn */}
+          <a
+            href={personalInfo.linkedin}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="w-9 h-9 rounded-full bg-slate-900/80 backdrop-blur-xl border border-white/15 hover:border-cyan-400 flex items-center justify-center text-slate-300 hover:text-cyan-300 shadow-[0_0_12px_rgba(0,0,0,0.6)] hover:shadow-[0_0_16px_rgba(0,212,255,0.4)] transition-all duration-300"
+            title="LinkedIn"
+          >
+            <Linkedin size={16} />
+          </a>
+
+          {/* External / Resume Link */}
+          <button
+            onClick={onOpenResume}
+            className="w-9 h-9 rounded-full bg-slate-900/80 backdrop-blur-xl border border-white/15 hover:border-purple-400 flex items-center justify-center text-slate-300 hover:text-purple-300 shadow-[0_0_12px_rgba(0,0,0,0.6)] hover:shadow-[0_0_16px_rgba(168,85,247,0.4)] transition-all duration-300 focus:outline-none"
+            title="Resume Dossier"
+          >
+            <ExternalLink size={16} />
+          </button>
+
+          {/* Direct Email */}
+          <a
+            href={`mailto:${personalInfo.email}`}
+            className="w-9 h-9 rounded-full bg-slate-900/80 backdrop-blur-xl border border-white/15 hover:border-cyan-400 flex items-center justify-center text-slate-300 hover:text-cyan-300 shadow-[0_0_12px_rgba(0,0,0,0.6)] hover:shadow-[0_0_16px_rgba(0,212,255,0.4)] transition-all duration-300"
+            title="Email Dispatch"
+          >
+            <Mail size={16} />
+          </a>
+        </div>
+
       </div>
+
     </div>
   );
 }
-

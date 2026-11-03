@@ -1,16 +1,16 @@
 import React, { useState } from 'react';
-import { Volume2, VolumeX, Menu, X, Sparkles, Terminal } from 'lucide-react';
+import { Volume2, VolumeX, Menu, X, Sparkles, ArrowRight } from 'lucide-react';
 import { audioManager } from '../data/audioAmbience';
 import { personalInfo } from '../data/portfolioData';
 
 const NAV_ITEMS = [
-  { id: 'hero', label: 'ORIGIN' },
-  { id: 'about', label: 'ABOUT' },
-  { id: 'skills', label: 'SKILLS' },
-  { id: 'projects', label: 'PROJECTS' },
-  { id: 'experience', label: 'EXPERIENCE' },
-  { id: 'achievements', label: 'HONORS' },
-  { id: 'contact', label: 'CONTACT' },
+  { id: 'hero', label: 'Home' },
+  { id: 'about', label: 'About' },
+  { id: 'skills', label: 'Skills' },
+  { id: 'projects', label: 'Projects' },
+  { id: 'experience', label: 'Experience' },
+  { id: 'achievements', label: 'Achievements' },
+  { id: 'contact', label: 'Contact' },
 ];
 
 export default function Navigation({
@@ -34,49 +34,53 @@ export default function Navigation({
   };
 
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-8 pt-4 sm:pt-6 pointer-events-auto">
-      <nav className="max-w-7xl mx-auto flex items-center justify-between py-2.5 px-4 sm:px-6 rounded-full glass-panel border border-cyan-500/20 shadow-2xl transition-all duration-300">
+    <header className="fixed top-0 left-0 right-0 z-50 px-4 sm:px-10 pt-4 sm:pt-6 pointer-events-auto">
+      <nav className="max-w-7xl mx-auto flex items-center justify-between py-2 sm:py-2.5 px-4 sm:px-6 rounded-full bg-slate-950/60 backdrop-blur-2xl border border-white/10 shadow-[0_4px_30px_rgba(0,0,0,0.8)] transition-all duration-300">
         
-        {/* Brand Left */}
+        {/* Brand Left: Stylized Delta Logo + Satya Sai / Data Analyst */}
         <button
           onClick={() => handleItemClick('hero')}
-          className="flex flex-col items-start text-left group cursor-pointer focus:outline-none"
+          className="flex items-center space-x-3 text-left group cursor-pointer focus:outline-none"
         >
-          <div className="flex items-center space-x-2">
-            <span className="w-2 h-2 bg-cyan-400 rounded-sm group-hover:rotate-45 transition-transform duration-300" />
-            <span className="font-display font-bold text-sm sm:text-base tracking-[0.25em] text-white group-hover:text-cyan-400 transition-colors">
+          {/* Futuristic Stylized 'A' / Delta Logo */}
+          <div className="w-9 h-9 sm:w-10 sm:h-10 rounded-xl bg-gradient-to-br from-cyan-400 via-blue-600 to-purple-600 flex items-center justify-center shadow-[0_0_15px_rgba(0,212,255,0.5)] group-hover:shadow-[0_0_22px_rgba(168,85,247,0.8)] transition-all duration-300">
+            <svg viewBox="0 0 24 24" fill="none" className="w-5 h-5 text-white">
+              <path d="M12 3L20 20L12 16L4 20L12 3Z" fill="currentColor" opacity="0.9" />
+              <path d="M12 7L16 17L12 15L8 17L12 7Z" fill="#030712" />
+            </svg>
+          </div>
+
+          <div className="flex flex-col">
+            <span className="font-sans font-bold text-base sm:text-lg tracking-tight text-white group-hover:text-cyan-300 transition-colors">
               {personalInfo.brandName}
             </span>
+            <span className="text-[11px] font-sans font-medium text-slate-400 -mt-0.5">
+              {personalInfo.title}
+            </span>
           </div>
-          <span className="text-[9px] font-mono tracking-widest text-cyan-400/80 pl-4">
-            {personalInfo.subtitle}
-          </span>
         </button>
 
-        {/* Desktop Center Navigation */}
-        <div className="hidden lg:flex items-center space-x-1 xl:space-x-2 bg-black/40 px-3 py-1 rounded-full border border-slate-800">
+        {/* Center Navigation Capsule Pill */}
+        <div className="hidden lg:flex items-center space-x-1 bg-black/60 px-2 py-1 rounded-full border border-white/10 shadow-inner">
           {NAV_ITEMS.map((item) => {
             const isActive = activeSection === item.id;
             return (
               <button
                 key={item.id}
                 onClick={() => handleItemClick(item.id)}
-                className={`relative px-3 py-1.5 text-xs font-mono tracking-widest transition-all duration-300 rounded-full focus:outline-none ${
+                className={`px-4 py-1.5 text-xs sm:text-[13px] font-sans tracking-wide transition-all duration-300 rounded-full focus:outline-none ${
                   isActive
-                    ? 'text-cyan-300 font-bold bg-cyan-950/60 shadow-[0_0_12px_rgba(0,240,255,0.25)]'
-                    : 'text-slate-400 hover:text-white hover:bg-slate-800/40'
+                    ? 'text-white font-semibold bg-gradient-to-r from-blue-600 to-cyan-500 shadow-[0_0_15px_rgba(0,212,255,0.6)]'
+                    : 'text-slate-300 hover:text-white hover:bg-white/5'
                 }`}
               >
                 {item.label}
-                {isActive && (
-                  <span className="absolute bottom-0 left-1/2 -translate-x-1/2 w-3 h-[2px] bg-cyan-400 rounded-full" />
-                )}
               </button>
             );
           })}
         </div>
 
-        {/* Controls Right */}
+        {/* Controls Right: Sound + Eco/HQ + Let's Connect Button */}
         <div className="flex items-center space-x-2 sm:space-x-3">
           
           {/* Procedural Audio Ambience Toggle */}
@@ -101,18 +105,19 @@ export default function Navigation({
                 ? 'border-amber-500/40 text-amber-400 bg-amber-950/20'
                 : 'border-slate-800 text-slate-400 hover:text-white hover:border-slate-700 bg-black/40'
             }`}
-            title="Toggle Graphics Performance Mode"
+            title="Toggle Graphics Mode"
           >
             <Sparkles size={12} className={isLowPerf ? 'text-amber-400' : 'text-cyan-400'} />
             <span>{isLowPerf ? 'ECO' : 'HQ'}</span>
           </button>
 
-          {/* Top-Right Outlined Button: LET'S CONNECT */}
+          {/* Top-Right Outlined Pill Button: Let's Connect → */}
           <button
             onClick={() => handleItemClick('contact')}
-            className="hidden sm:inline-flex items-center space-x-1.5 px-4 py-1.5 rounded-full border border-cyan-400/80 text-xs font-mono font-semibold tracking-wider text-cyan-400 hover:bg-cyan-400 hover:text-slate-950 transition-all duration-300 shadow-[0_0_15px_rgba(0,240,255,0.2)] hover:shadow-[0_0_25px_rgba(0,240,255,0.6)] cursor-pointer focus:outline-none"
+            className="hidden sm:inline-flex items-center space-x-2 px-5 py-2 rounded-full border border-cyan-400/80 text-xs sm:text-sm font-sans font-semibold tracking-wide text-white bg-slate-900/60 hover:bg-gradient-to-r hover:from-cyan-500 hover:to-purple-600 hover:border-transparent transition-all duration-300 shadow-[0_0_18px_rgba(0,212,255,0.35)] hover:shadow-[0_0_25px_rgba(168,85,247,0.6)] cursor-pointer focus:outline-none"
           >
-            <span>LET'S CONNECT</span>
+            <span>Let's Connect</span>
+            <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
           </button>
 
           {/* Mobile Menu Hamburger */}
@@ -128,38 +133,28 @@ export default function Navigation({
 
       {/* Mobile Dropdown Menu */}
       {mobileMenuOpen && (
-        <div className="lg:hidden mt-2 p-4 rounded-2xl glass-panel border border-cyan-500/30 shadow-2xl flex flex-col space-y-2 animate-in fade-in slide-in-from-top-4 duration-200">
+        <div className="lg:hidden mt-2 p-4 rounded-3xl bg-slate-950/90 backdrop-blur-2xl border border-cyan-500/30 shadow-2xl flex flex-col space-y-2 animate-in fade-in slide-in-from-top-4 duration-200">
           {NAV_ITEMS.map((item) => (
             <button
               key={item.id}
               onClick={() => handleItemClick(item.id)}
-              className={`text-left px-4 py-2.5 rounded-xl font-mono text-xs tracking-widest transition-colors ${
+              className={`text-left px-4 py-2.5 rounded-xl font-sans text-sm tracking-wide transition-colors ${
                 activeSection === item.id
-                  ? 'bg-cyan-950/70 text-cyan-300 border border-cyan-500/40'
+                  ? 'bg-gradient-to-r from-blue-600 to-cyan-500 text-white font-semibold shadow-lg'
                   : 'text-slate-300 hover:bg-slate-900/60 hover:text-white'
               }`}
             >
               {item.label}
             </button>
           ))}
-          <div className="pt-2 border-t border-slate-800 flex justify-between items-center">
-            <span className="text-[11px] font-mono text-slate-400">GRAPHICS MODE</span>
-            <button
-              onClick={onTogglePerf}
-              className="text-xs font-mono px-3 py-1 rounded-lg border border-slate-700 text-cyan-400"
-            >
-              {isLowPerf ? 'ECO (Optimized)' : 'HQ (Cinematic)'}
-            </button>
-          </div>
           <button
             onClick={() => handleItemClick('contact')}
-            className="w-full text-center py-2.5 rounded-xl bg-cyan-400 text-slate-950 font-mono font-bold text-xs tracking-widest mt-1"
+            className="w-full text-center py-2.5 rounded-xl bg-gradient-to-r from-cyan-400 to-purple-600 text-white font-sans font-bold text-sm tracking-wide mt-2"
           >
-            LET'S CONNECT
+            Let's Connect →
           </button>
         </div>
       )}
     </header>
   );
 }
-

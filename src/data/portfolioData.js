@@ -1,23 +1,50 @@
 export const personalInfo = {
   name: "Nune Satya Sai Kumar",
-  brandName: "SATYA SAI",
-  title: "Data Analyst & AI Engineer",
-  subtitle: "DATA ANALYTICS • AI",
+  brandName: "Satya Sai",
+  title: "Data Analyst",
+  subtitle: "DATA • AI • INNOVATION",
   location: "Hyderabad, India",
   email: "nsatyasaichowdary1616@gmail.com",
   phone: "+91 9849086132",
   linkedin: "https://linkedin.com/in/nsatyasai",
   github: "https://github.com/nsatyasai",
   status: "AVAILABLE FOR HIGH-IMPACT ROLES",
-  headline: "Turning Data Into Intelligence.",
-  subheadline: "Building insights. Engineering possibilities.",
-  heroDescription: "I explore data, uncover meaningful patterns, and transform complex information into clear, actionable insights through analytics and emerging AI technologies.",
+  headline: "Nune Satya Sai Kumar",
+  subheadline: "Turning Data into Insights, and Ideas into Impact.",
+  heroDescription: "Data Analyst with 1+ year of experience in building automated ETL pipelines, tuning databases, and deploying Generative AI & Agentic AI workflows.",
   aboutText: [
     "I am a Data Analyst with practical expertise in building high-throughput automated ETL pipelines, tuning relational databases for extreme query performance, and deploying Generative AI and Agentic AI workflows.",
     "At Vangrove Tech, I engineered enterprise-grade data infrastructure processing over 1.4M+ monthly transactional records, slashed database query latencies by 82%, and deployed hybrid RAG assistants and autonomous multi-agent audit systems.",
     "My focus blends rigorous analytical engineering with intelligent autonomous agents—turning raw, messy distributed streams into crystal-clear executive decision engines."
   ]
 };
+
+export const heroQuickStats = [
+  {
+    icon: "BarChart3",
+    value: "1+",
+    label: "Year Experience",
+    color: "from-cyan-400 to-blue-500"
+  },
+  {
+    icon: "LayoutDashboard",
+    value: "5+",
+    label: "Dashboards Built",
+    color: "from-blue-400 to-indigo-500"
+  },
+  {
+    icon: "Trophy",
+    value: "2",
+    label: "Hackathon Wins",
+    color: "from-amber-400 to-orange-500"
+  },
+  {
+    icon: "Zap",
+    value: "3+",
+    label: "Tech Domains",
+    color: "from-purple-400 to-pink-500"
+  }
+];
 
 export const verifiedMetrics = [
   {
@@ -256,4 +283,3 @@ export const verifiedProjects = [
     github: "https://github.com/nsatyasai"
   }
 ];
-
