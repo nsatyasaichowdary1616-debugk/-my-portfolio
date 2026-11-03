@@ -105,3 +105,4 @@ export default function CosmicRing3D({ position = [5, 2.5, -18], count = 450 }) 
     </group>
   );
 }
+

@@ -5,7 +5,7 @@ import { verifiedProjects } from '../data/portfolioData';
 export default function ProjectsSection({ onSelectProject = () => {} }) {
   const [filter, setFilter] = useState('ALL');
 
-  const categories = ['ALL', 'AI & Vector Search', 'Agentic AI', 'Data Engineering', 'Business Intelligence', 'Spatial 3D & VR', 'Cloud Infrastructure'];
+  const categories = ['ALL', 'AI & Vector Search', 'Agentic AI', 'Data Engineering', 'Business Intelligence', 'Data Integrity & Cloud'];
 
   const filteredProjects = filter === 'ALL'
     ? verifiedProjects
@@ -27,7 +27,7 @@ export default function ProjectsSection({ onSelectProject = () => {} }) {
           </h2>
 
           <p className="text-slate-300 font-sans text-sm sm:text-base">
-            Verified production data architectures, autonomous multi-agent audit networks, high-throughput ETL engines, and award-winning spatial systems.
+            Verified production data architectures, autonomous multi-agent audit networks, high-throughput ETL engines, and executive intelligence suites engineered at Vangrove Tech.
           </p>
         </div>
 
@@ -133,4 +133,3 @@ export default function ProjectsSection({ onSelectProject = () => {} }) {
     </section>
   );
 }
-

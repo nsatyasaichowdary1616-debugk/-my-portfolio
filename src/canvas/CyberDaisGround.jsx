@@ -103,3 +103,4 @@ export default function CyberDaisGround({ position = [0, -2, 0] }) {
     </group>
   );
 }
+

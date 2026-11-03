@@ -17,7 +17,6 @@ export default function ContactSection({ onOpenResume = () => {} }) {
     e.preventDefault();
     if (!formState.email || !formState.message) return;
     setIsSent(true);
-    // In production, this can connect to Formspree, EmailJS, or user's API
   };
 
   return (
@@ -107,7 +106,7 @@ export default function ContactSection({ onOpenResume = () => {} }) {
                   </div>
                   <div>
                     <div className="text-xs font-bold text-white group-hover:text-cyan-300 transition-colors">GitHub</div>
-                    <div className="text-[10px] font-mono text-slate-400">@nsatyasai</div>
+                    <div className="text-[10px] font-mono text-slate-400 truncate max-w-[120px]">nsatyasaichowdary</div>
                   </div>
                 </div>
                 <ArrowUpRight size={15} className="text-slate-500 group-hover:text-cyan-400 transition-colors" />
@@ -131,7 +130,7 @@ export default function ContactSection({ onOpenResume = () => {} }) {
                 </div>
                 <div>
                   <div className="text-xs font-bold text-white">{personalInfo.location}</div>
-                  <div className="text-[10px] font-mono text-slate-400">Relocation / Remote Open</div>
+                  <div className="text-[10px] font-mono text-slate-400">Hyderabad, India</div>
                 </div>
               </div>
             </div>
@@ -269,4 +268,3 @@ export default function ContactSection({ onOpenResume = () => {} }) {
     </section>
   );
 }
-

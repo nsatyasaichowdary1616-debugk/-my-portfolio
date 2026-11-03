@@ -1,7 +1,8 @@
 import React, { useRef, useMemo } from 'react';
 import { useFrame } from '@react-three/fiber';
-import { Float, Text } from '@react-three/drei';
+import { Float } from '@react-three/drei';
 import * as THREE from 'three';
+import { createLabelTexture } from './utils/createLabelTexture';
 
 const CORE_SKILLS = [
   { name: 'PYTHON', desc: 'ETL & Vector Eng', color: '#00f0ff', angle: 0 },
@@ -17,6 +18,22 @@ export default function IntelligenceCore3D({ position = [0, 2, -45] }) {
   const innerCoreRef = useRef();
   const outerRingsRef = useRef();
   const orbitGroupRef = useRef();
+
+  // Pre-generate offline canvas textures (zero network requests, zero 404)
+  const runeTextures = useMemo(() => {
+    return CORE_SKILLS.map(skill => {
+      return createLabelTexture(skill.name, {
+        fontSize: 34,
+        textColor: '#ffffff',
+        subText: skill.desc,
+        subColor: skill.color,
+        borderColor: skill.color,
+        bgColor: 'rgba(5, 12, 30, 0.88)',
+        width: 384,
+        height: 192
+      });
+    });
+  }, []);
 
   useFrame((state, delta) => {
     const t = state.clock.elapsedTime;
@@ -91,52 +108,22 @@ export default function IntelligenceCore3D({ position = [0, 2, -45] }) {
 
           return (
             <group key={skill.name} position={[x, y, z]} rotation={[0, -skill.angle + Math.PI / 2, 0]}>
-              {/* Glass Slab Panel */}
+              {/* Textured Glass Rune Panel */}
               <mesh>
-                <boxGeometry args={[2.4, 1.2, 0.08]} />
-                <meshPhysicalMaterial
-                  color="#081026"
-                  emissive={skill.color}
-                  emissiveIntensity={0.25}
-                  roughness={0.15}
-                  metalness={0.1}
-                  transmission={0.8}
-                  thickness={0.5}
+                <planeGeometry args={[2.4, 1.2]} />
+                <meshBasicMaterial
+                  map={runeTextures[index]}
                   transparent
-                  opacity={0.85}
+                  opacity={0.92}
+                  side={THREE.DoubleSide}
                 />
               </mesh>
 
-              {/* Glowing Beveled Border */}
-              <mesh position={[0, 0, 0.045]}>
-                <ringGeometry args={[1.05, 1.1, 4]} />
-                <meshBasicMaterial color={skill.color} transparent opacity={0.6} />
+              {/* Glowing Beveled Border Mesh */}
+              <mesh position={[0, 0, -0.01]}>
+                <planeGeometry args={[2.44, 1.24]} />
+                <meshBasicMaterial color={skill.color} transparent opacity={0.3} side={THREE.DoubleSide} />
               </mesh>
-
-              {/* Skill Title Text in 3D */}
-              <Text
-                position={[0, 0.22, 0.06]}
-                fontSize={0.24}
-                font="https://fonts.gstatic.com/s/spacegrotesk/v16/V8mQoQDjQSkFtoMM3T6r8E7mF71Q-g.woff"
-                color="#ffffff"
-                anchorX="center"
-                anchorY="middle"
-                letterSpacing={0.08}
-              >
-                {skill.name}
-              </Text>
-
-              {/* Skill Description Subtitle */}
-              <Text
-                position={[0, -0.18, 0.06]}
-                fontSize={0.12}
-                color="#94a3b8"
-                anchorX="center"
-                anchorY="middle"
-                letterSpacing={0.04}
-              >
-                {skill.desc}
-              </Text>
             </group>
           );
         })}
@@ -144,4 +131,3 @@ export default function IntelligenceCore3D({ position = [0, 2, -45] }) {
     </group>
   );
 }
-

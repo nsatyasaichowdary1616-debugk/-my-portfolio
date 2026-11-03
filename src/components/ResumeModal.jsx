@@ -15,13 +15,13 @@ export default function ResumeModal({ isOpen, onClose = () => {} }) {
     const resumeText = `
 NUNE SATYA SAI KUMAR
 Hyderabad, India | +91 9849086132 | nsatyasaichowdary1616@gmail.com
-linkedin.com/in/nsatyasai
+linkedin.com/in/nsatyasai | github.com/nsatyasaichowdary1616-debugk
 
 PROFESSIONAL SUMMARY
-Data Analyst with 1 year of experience building automated ETL pipelines, tuning relational databases, and deploying Generative AI and Agentic AI workflows. Proven track record of reducing query latency by 82%, engineering enterprise RAG retrieval systems over unstructured data, and building executive Power BI dashboards that eliminate manual reporting overhead.
+Data Analyst with 1+ year of experience in building automated ETL pipelines, tuning relational databases, and deploying Generative AI and Agentic AI workflows. Proven track record of reducing query latency by 82%, engineering enterprise RAG retrieval systems over unstructured data, and building executive Power BI dashboards that eliminate manual reporting overhead.
 
 TECHNICAL SKILLS
-Data Analytics & BI: SQL (MySQL, PostgreSQL), Power BI, Tableau, Advanced Excel, Pandas, NumPy, Scikit-learn, Data Modeling, ETL Pipelines, Query Optimization, Data Quality, KPI Reporting, Business Insights
+Data Analytics & BI: SQL (MySQL, PostgreSQL), Power BI, Tableau, DAX, Advanced Excel, Pandas, NumPy, Scikit-learn, Data Modeling, ETL Pipelines, Query Optimization, Data Quality, KPI Reporting, Business Insights
 Generative AI & Agentic AI: LangChain, AutoGen, Agentic AI, Retrieval-Augmented Generation (RAG), Vector DB, HuggingFace, Prompt Engineering, GenAI
 Core Tools, LLMs & Cloud: Python, ChatGPT, Claude AI, Gemini, AWS (EC2, S3), Git, GitHub, REST APIs
 
@@ -39,8 +39,8 @@ Bachelor of Technology in Computer Science and Engineering (2021 – 2025)
 MLR Institute of Technology (MLRIT), Hyderabad, India | CGPA: 7.34 / 10.0
 
 ACHIEVEMENTS
-• METALOOP 2023 Hackathon – Winner (Healthcare Domain), MLRIT, Hyderabad: Achieved victory in Healthcare domain by engineering an interactive VR solution in Unity to visualize and interact with molecular structures and spatial dynamics of 20+ pharmaceutical drugs.
 • BRAIN-O-VISION AWS Hackathon 2023 – 1st Position, MLRIT, Hyderabad: Secured 1st place among competing teams by architecting scalable cloud infrastructure using AWS services and deploying a responsive, highly accessible full-stack web application.
+• METALOOP 2023 Hackathon – Winner (Healthcare Domain), MLRIT, Hyderabad: Achieved victory in Healthcare domain by engineering an interactive VR solution in Unity to visualize and interact with molecular structures and spatial dynamics of 20+ pharmaceutical drugs.
     `.trim();
 
     navigator.clipboard.writeText(resumeText);
@@ -118,6 +118,10 @@ ACHIEVEMENTS
               <a href="https://linkedin.com/in/nsatyasai" target="_blank" rel="noreferrer" className="text-sky-400 hover:underline">
                 linkedin.com/in/nsatyasai
               </a>
+              <span>•</span>
+              <a href="https://github.com/nsatyasaichowdary1616-debugk" target="_blank" rel="noreferrer" className="text-purple-400 hover:underline">
+                github.com/nsatyasaichowdary1616-debugk
+              </a>
             </div>
           </div>
 
@@ -127,7 +131,7 @@ ACHIEVEMENTS
               PROFESSIONAL SUMMARY
             </h2>
             <p className="text-xs sm:text-sm text-slate-300 leading-relaxed">
-              Data Analyst with 1 year of experience building automated ETL pipelines, tuning relational databases, and deploying Generative AI and Agentic AI workflows. Proven track record of reducing query latency by 82%, engineering enterprise RAG retrieval systems over unstructured data, and building executive Power BI dashboards that eliminate manual reporting overhead.
+              Data Analyst with 1+ year of experience in building automated ETL pipelines, tuning relational databases, and deploying Generative AI and Agentic AI workflows. Proven track record of reducing query latency by 82%, engineering enterprise RAG retrieval systems over unstructured data, and building executive Power BI dashboards that eliminate manual reporting overhead.
             </p>
           </div>
 
@@ -139,7 +143,7 @@ ACHIEVEMENTS
             <div className="space-y-2 text-xs sm:text-sm">
               <div>
                 <span className="font-semibold text-white">Data Analytics & BI: </span>
-                <span className="text-slate-300">SQL (MySQL, PostgreSQL), Power BI, Tableau, Advanced Excel, Pandas, NumPy, Scikit-learn, Data Modeling, ETL Pipelines, Query Optimization, Data Quality, KPI Reporting, Business Insights</span>
+                <span className="text-slate-300">SQL (MySQL, PostgreSQL), Power BI, Tableau, DAX, Advanced Excel, Pandas, NumPy, Scikit-learn, Data Modeling, ETL Pipelines, Query Optimization, Data Quality, KPI Reporting, Business Insights</span>
               </div>
               <div>
                 <span className="font-semibold text-white">Generative AI & Agentic AI: </span>
@@ -206,21 +210,21 @@ ACHIEVEMENTS
             <div className="space-y-3 text-xs sm:text-sm">
               <div>
                 <div className="flex justify-between items-baseline">
-                  <div className="font-bold text-white">METALOOP 2023 Hackathon – Winner (Healthcare Domain)</div>
-                  <div className="text-xs font-mono text-slate-400">MLRIT, Hyderabad</div>
-                </div>
-                <p className="text-slate-300 mt-0.5">
-                  Achieved victory in the Healthcare domain by engineering an interactive VR solution in Unity to visualize and interact with the molecular structures and spatial dynamics of 20+ pharmaceutical drugs.
-                </p>
-              </div>
-
-              <div>
-                <div className="flex justify-between items-baseline">
                   <div className="font-bold text-white">BRAIN-O-VISION AWS Hackathon 2023 – 1st Position</div>
                   <div className="text-xs font-mono text-slate-400">MLRIT, Hyderabad</div>
                 </div>
                 <p className="text-slate-300 mt-0.5">
                   Secured 1st place among competing teams by architecting scalable cloud infrastructure using AWS services and deploying a responsive, highly accessible full-stack web application.
+                </p>
+              </div>
+
+              <div>
+                <div className="flex justify-between items-baseline">
+                  <div className="font-bold text-white">METALOOP 2023 Hackathon – Winner (Healthcare Domain)</div>
+                  <div className="text-xs font-mono text-slate-400">MLRIT, Hyderabad</div>
+                </div>
+                <p className="text-slate-300 mt-0.5">
+                  Achieved victory in the Healthcare domain by engineering an interactive VR solution in Unity to visualize and interact with the molecular structures and spatial dynamics of 20+ pharmaceutical drugs.
                 </p>
               </div>
             </div>
@@ -241,4 +245,3 @@ ACHIEVEMENTS
     </div>
   );
 }
-

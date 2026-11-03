@@ -31,34 +31,33 @@ export const GroundShader = {
       // Perspective distance from camera
       float dist = length(vWorldPosition.xz);
       
-      // Portal reflection streak along Z-axis toward viewer (X close to 0)
-      float portalStreakX = smoothstep(12.0, 0.0, abs(vWorldPosition.x));
-      float portalStreakZ = smoothstep(60.0, -10.0, vWorldPosition.z) * smoothstep(-40.0, -10.0, vWorldPosition.z);
+      // Portal & bust reflection streak along Z-axis toward viewer
+      float streakX = smoothstep(14.0, 0.0, abs(vWorldPosition.x - 2.5));
+      float streakZ = smoothstep(55.0, -12.0, vWorldPosition.z) * smoothstep(-45.0, -12.0, vWorldPosition.z);
       
       // Micro-surface ripples
       float ripple = sin(vWorldPosition.z * 1.5 + sin(vWorldPosition.x * 2.0) + uTime * 1.2) * 0.5 + 0.5;
-      float microDetail = sin(vWorldPosition.x * 12.0 + uTime * 0.5) * sin(vWorldPosition.z * 12.0);
       
       // Combine reflection specular streak
-      float reflectionIntensity = portalStreakX * portalStreakZ * (0.6 + ripple * 0.4);
+      float reflectionIntensity = streakX * streakZ * (0.65 + ripple * 0.35);
       
-      // Grid lines / technological floor traces (very subtle obsidian tile tessellation)
-      vec2 grid = abs(fract(vWorldPosition.xz * 0.2 - 0.5) - 0.5) / fwidth(vWorldPosition.xz * 0.2);
-      float line = min(grid.x, grid.y);
-      float gridIntensity = 1.0 - min(line, 1.0);
-      gridIntensity *= smoothstep(40.0, 5.0, dist) * 0.12;
+      // Grid lines / technological floor traces using clean analytical sine without fwidth
+      float gridX = abs(sin(vWorldPosition.x * 0.6));
+      float gridZ = abs(sin(vWorldPosition.z * 0.6));
+      float gridIntensity = pow(max(gridX, gridZ), 32.0);
+      gridIntensity *= smoothstep(45.0, 5.0, dist) * 0.22;
 
       // Color composite
       vec3 color = uColorBase;
-      color += uColorGlow * reflectionIntensity * 0.75;
+      color += uColorGlow * reflectionIntensity * 0.85;
+      color += vec3(0.55, 0.3, 0.95) * reflectionIntensity * 0.4;
       color += uColorGlow * gridIntensity;
 
       // Distance fog falloff
-      float fogFactor = smoothstep(25.0, 90.0, dist);
+      float fogFactor = smoothstep(22.0, 95.0, dist);
       color = mix(color, uColorFog, fogFactor);
 
       gl_FragColor = vec4(color, 1.0);
     }
   `
 };
-

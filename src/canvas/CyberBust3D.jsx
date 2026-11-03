@@ -249,3 +249,4 @@ export default function CyberBust3D({ position = [5, 2.5, -18], scale = [1.2, 1.
     </group>
   );
 }
+

@@ -1,6 +1,6 @@
 import React, { useMemo } from 'react';
-import { Text } from '@react-three/drei';
 import * as THREE from 'three';
+import { createLabelTexture } from './utils/createLabelTexture';
 
 export default function InfiniteCorridor3D({ startZ = -70, count = 10, spacing = 8 }) {
   // Memoize frame materials
@@ -22,6 +22,33 @@ export default function InfiniteCorridor3D({ startZ = -70, count = 10, spacing =
     emissive: '#38bdf8',
     emissiveIntensity: 1.2,
   }), []);
+
+  // Pre-render offline textures for timeline waypoints
+  const vangroveTexture = useMemo(() => {
+    return createLabelTexture('2025 – 2026', {
+      fontSize: 32,
+      textColor: '#00f0ff',
+      subText: 'DATA ANALYST · VANGROVE TECH',
+      subColor: '#ffffff',
+      borderColor: '#00f0ff',
+      bgColor: 'rgba(5, 12, 30, 0.9)',
+      width: 440,
+      height: 180
+    });
+  }, []);
+
+  const mlritTexture = useMemo(() => {
+    return createLabelTexture('2021 – 2025', {
+      fontSize: 32,
+      textColor: '#a855f7',
+      subText: 'B.TECH CSE · MLRIT (CGPA 7.34)',
+      subColor: '#ffffff',
+      borderColor: '#a855f7',
+      bgColor: 'rgba(5, 12, 30, 0.9)',
+      width: 440,
+      height: 180
+    });
+  }, []);
 
   // Generate frame positions
   const frames = useMemo(() => {
@@ -64,69 +91,19 @@ export default function InfiniteCorridor3D({ startZ = -70, count = 10, spacing =
           <mesh position={[4, -5.4, 0]} material={floorConduitMat}>
             <boxGeometry args={[0.1, 0.05, spacing]} />
           </mesh>
-
-          {/* Depth Light Pockets */}
-          {idx % 3 === 0 && (
-            <pointLight position={[0, 5, 0]} color="#00f0ff" intensity={1.5} distance={15} decay={2} />
-          )}
         </group>
       ))}
 
       {/* Corridor Floating Holographic Markers in 3D Space */}
-      <group position={[-3.8, 2.5, -85]}>
-        <Text
-          fontSize={0.35}
-          color="#00f0ff"
-          anchorX="center"
-          letterSpacing={0.1}
-        >
-          2025 – 2026
-        </Text>
-        <Text
-          position={[0, -0.4, 0]}
-          fontSize={0.22}
-          color="#ffffff"
-          anchorX="center"
-        >
-          DATA ANALYST • VANGROVE TECH
-        </Text>
-        <Text
-          position={[0, -0.75, 0]}
-          fontSize={0.16}
-          color="#94a3b8"
-          anchorX="center"
-        >
-          1.4M+ Transactions • 82% Query Speedup
-        </Text>
-      </group>
+      <mesh position={[-3.8, 2.5, -85]} rotation={[0, 0.3, 0]}>
+        <planeGeometry args={[3.2, 1.3]} />
+        <meshBasicMaterial map={vangroveTexture} transparent side={THREE.DoubleSide} />
+      </mesh>
 
-      <group position={[3.8, 2.5, -112]}>
-        <Text
-          fontSize={0.35}
-          color="#a855f7"
-          anchorX="center"
-          letterSpacing={0.1}
-        >
-          2021 – 2025
-        </Text>
-        <Text
-          position={[0, -0.4, 0]}
-          fontSize={0.22}
-          color="#ffffff"
-          anchorX="center"
-        >
-          B.TECH CSE • MLRIT
-        </Text>
-        <Text
-          position={[0, -0.75, 0]}
-          fontSize={0.16}
-          color="#94a3b8"
-          anchorX="center"
-        >
-          CGPA 7.34 • National Hackathon Laurels
-        </Text>
-      </group>
+      <mesh position={[3.8, 2.5, -112]} rotation={[0, -0.3, 0]}>
+        <planeGeometry args={[3.2, 1.3]} />
+        <meshBasicMaterial map={mlritTexture} transparent side={THREE.DoubleSide} />
+      </mesh>
     </group>
   );
 }
-

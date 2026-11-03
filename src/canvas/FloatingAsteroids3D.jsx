@@ -74,3 +74,4 @@ export default function FloatingAsteroids3D() {
     </group>
   );
 }
+
