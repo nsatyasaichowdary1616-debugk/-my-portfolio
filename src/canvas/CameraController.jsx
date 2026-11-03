@@ -73,3 +73,4 @@ export default function CameraController({ activeIndex = 0, scrollProgress = 0, 
 
   return null;
 }
+

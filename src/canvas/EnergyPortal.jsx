@@ -82,3 +82,4 @@ export default function EnergyPortal({ position = [0, 4.5, -22], scale = [1, 1, 
     </group>
   );
 }
+

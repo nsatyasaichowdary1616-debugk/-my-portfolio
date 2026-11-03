@@ -106,3 +106,4 @@ export default function HeroOverlay({ onExplore = () => {}, onOpenResume = () =>
     </div>
   );
 }
+

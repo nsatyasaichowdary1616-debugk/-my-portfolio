@@ -40,3 +40,4 @@ export default function ViewportFrame({ activeSection = 'hero' }) {
     </div>
   );
 }
+

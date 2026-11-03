@@ -74,3 +74,4 @@ export default function CosmicParticles({ count = 800 }) {
     </points>
   );
 }
+

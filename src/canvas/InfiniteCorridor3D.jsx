@@ -129,3 +129,4 @@ export default function InfiniteCorridor3D({ startZ = -70, count = 10, spacing =
     </group>
   );
 }
+

@@ -144,3 +144,4 @@ export default function IntelligenceCore3D({ position = [0, 2, -45] }) {
     </group>
   );
 }
+

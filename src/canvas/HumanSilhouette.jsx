@@ -61,3 +61,4 @@ export default function HumanSilhouette({ position = [0, -1.8, -6] }) {
     </group>
   );
 }
+
